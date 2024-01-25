@@ -1,0 +1,2 @@
+export const DEFAULT_ITEM_FETCH_COUNT = 10;
+export const DEFAULT_ITEM_FETCH_COUNT_FOR_ADMIN = 5;
