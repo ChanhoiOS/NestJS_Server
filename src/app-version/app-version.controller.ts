@@ -24,6 +24,7 @@ export class AppVersionController {
     console.log(getAppVersionDto);
     const response =
       await this.appVersionService.getAppVersion(getAppVersionDto);
+    console.log('response', response);
     res.status(HttpStatus.OK).json(response);
   }
 }
