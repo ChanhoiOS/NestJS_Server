@@ -1,9 +1,9 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class SignUpDto {
   @IsString()
   userHash: string;
 
-  @IsNumber()
-  usingPlatform: number;
+  @IsString()
+  usingPlatform: string;
 }

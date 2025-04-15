@@ -6,6 +6,9 @@ import { JwtService } from '@nestjs/jwt';
 import { LoginUserDto } from './dto/login-user.dto';
 import { ResponseDto } from '../common/Response/response.dto';
 import { HttpStatus, Injectable } from '@nestjs/common';
+import { response } from "express";
+import { printLog } from "../common/Log/log-util";
+import * as process from "process";
 @Injectable()
 export class AuthService {
   constructor(
@@ -20,20 +23,21 @@ export class AuthService {
         usingPlatform: signUpDto.usingPlatform,
         userHash: signUpDto.userHash,
       });
-
+      printLog('test');
       return await this.login({
-        userHash: signUpDto.userHash,
         usingPlatform: signUpDto.usingPlatform,
+        userHash: signUpDto.userHash,
       });
     } catch (e) {
+      printLog('e', e);
       throw e;
     }
   }
 
   async login(loginUserDto: LoginUserDto) {
     const userInfo = await this.userRepository.findOneBy({
-      userHash: loginUserDto.userHash,
       usingPlatform: loginUserDto.usingPlatform,
+      userHash: loginUserDto.userHash,
     });
 
     const payload = loginUserDto.userHash;

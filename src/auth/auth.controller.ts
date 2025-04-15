@@ -13,7 +13,10 @@ export class AuthController {
       const response = await this.authService.signUp(createUserDto);
       return ResponseDto.success(response, '', HttpStatus.OK);
     } catch (e) {
-      return ResponseDto.fail('회원가입에 실패하였습니다.', HttpStatus.OK);
+      return ResponseDto.fail(
+        '회원가입에 실패하였습니다.',
+        HttpStatus.AMBIGUOUS,
+      );
     }
   }
 }
