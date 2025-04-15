@@ -6,9 +6,8 @@ import { JwtService } from '@nestjs/jwt';
 import { LoginUserDto } from './dto/login-user.dto';
 import { ResponseDto } from '../common/Response/response.dto';
 import { HttpStatus, Injectable } from '@nestjs/common';
-import { response } from "express";
-import { printLog } from "../common/Log/log-util";
-import * as process from "process";
+import { printLog } from '../common/Log/log-util';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -41,9 +40,12 @@ export class AuthService {
     });
 
     const payload = loginUserDto.userHash;
-    const accessToken = this.jwtService.sign({
-      data: payload,
-    });
+    const accessToken = this.jwtService.sign(
+      {
+        data: payload,
+      },
+      { expiresIn: 60 * 60 * 24 }, //24시간
+    );
 
     if (userInfo == null) {
       return ResponseDto.fail(
