@@ -1,9 +1,8 @@
-import { Body, Controller, HttpStatus, Post } from "@nestjs/common";
-import { SignUpDto } from "./dto/sign-up.dto";
-import { AuthService } from "./auth.service";
-import { ResponseDto } from "../common/Response/response.dto";
-import { LoginUserDto } from "./dto/login-user.dto";
-import { printLog } from "../common/Log/log-util";
+import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
+import { SignUpDto } from './dto/sign-up.dto';
+import { AuthService } from './auth.service';
+import { ResponseDto } from '../common/Response/response.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Controller('/api/auth')
 export class AuthController {
@@ -27,7 +26,6 @@ export class AuthController {
   async login(@Body() loginUserDto: LoginUserDto) {
     try {
       const userInfo = await this.authService.login(loginUserDto);
-      printLog('userInfo:', userInfo);
       return userInfo;
     } catch (e) {
       return ResponseDto.fail(

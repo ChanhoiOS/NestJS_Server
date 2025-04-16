@@ -22,7 +22,7 @@ export class AuthService {
         usingPlatform: signUpDto.usingPlatform,
         userHash: signUpDto.userHash,
       });
-      printLog('test');
+
       return await this.login({
         usingPlatform: signUpDto.usingPlatform,
         userHash: signUpDto.userHash,
