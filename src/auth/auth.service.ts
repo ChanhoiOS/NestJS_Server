@@ -59,7 +59,7 @@ export class AuthService {
         userHash: userInfo.userHash,
         accessToken: accessToken,
       },
-      '로그인 성공',
+      '로그인에 성공하였습니다.',
       HttpStatus.OK,
     );
   }
