@@ -63,4 +63,35 @@ export class AuthService {
       HttpStatus.OK,
     );
   }
+
+  async getUser(token: string) {
+    try {
+      const prefixRemovedToken = token.replace('Bearer ', '');
+      const decodedTokenObject = this.jwtService.decode(prefixRemovedToken);
+
+      if (decodedTokenObject === null) {
+        throw Error('토큰에 오류가 있습니다.');
+      }
+
+      return decodedTokenObject['data'];
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async deleteUser(userHash: string) {
+    try {
+      //존재하는 유지인지 확인
+      const user = await this.userRepository.findOneBy({
+        userHash: userHash,
+      });
+
+      await this.userRepository.delete({
+        userId: user.userId,
+      });
+    } catch (e) {
+      printLog(e);
+      throw e;
+    }
+  }
 }
